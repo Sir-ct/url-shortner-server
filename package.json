@@ -1,0 +1,16 @@
+{
+  "name": "url-shortner-server",
+  "version": "1.0.0",
+  "description": "url shortner project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shorner",
+    "url",
+    "tiny"
+  ],
+  "author": "onyeka david",
+  "license": "ISC"
+}
