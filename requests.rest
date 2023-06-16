@@ -1,0 +1,11 @@
+POST http://localhost:4000/createurl
+Accept: application/json
+Content-Type: application/json
+
+{
+   "full_url": "https://github.com",
+   "custom_url": "abcde"
+}
+
+###
+GET http://localhost:4000/geturl
