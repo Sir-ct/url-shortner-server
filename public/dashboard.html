@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="body-wrapper">
+        <header>
+            <div class="logo">
+                Scr.co
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="url-form">
+                <input type="url" id="full" placeholder="enter valid url: " required>
+                <input type="text" id="custom" placeholder="enter custom url (optional)" >
+                <button id="submit-btn">Generate Short Url</button>
+            </div>
+            <div id="logout-btn"> logout </div>
+
+            <div class="display-url-info">
+                <div class="display-header">
+                    <div>Full URL</div>
+                    <div>Short URL</div>
+                    <div>Clicks</div>
+                    <div>QR Code</div>
+                </div>
+                <div id="display-body-container">
+                   
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    function copy(url){
+        console.log("copying..",url)
+        navigator.clipboard.writeText(url).then((res)=>{
+            alert('url copied')
+        }).catch((err)=>{
+            alert('an error occured')
+        })
+    }
+    </script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,43 +1,40 @@
 require('dotenv').config()
 
+const path = require('path')
 const express = require('express')
 const {connectDB} = require('./db/db')
-const {nanoid} = require('nanoid')
-const Urls = require('./models/UrlSchema')
-const {validateUrl} = require('./middlewares/validations')
+const {validateUrl, validateUser} = require('./middlewares/validations')
+const { addUrl, getUrl, visitUrl } = require('./controllers/urlController')
+const { registerUser, getUser } = require('./controllers/usersController')
+const { authenticateUser } = require('./controllers/authController')
+const { isUserAuthenticated } = require('./middlewares/auth')
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname, 'public')))
 
 connectDB(process.env.MONGO_STRING)
 
 
 
 app.get("/", (req, res)=>{
-    res.send("Welcome to URL Shortner :)")
+    console.log(req.headers)
+    res.sendFile(path.join(__dirname,'public', './index.html'))
 })
+//users routes
+app.post('/signup', validateUser, registerUser)
+app.post('/login', validateUser, authenticateUser)
+app.get('/details', isUserAuthenticated, getUser)
 
-app.get("/geturl", async(req, res)=>{
-    let url = await Urls.find()
+//url routes
+app.get("/geturl", isUserAuthenticated, getUrl)
 
-   return res.status(200).json({message: "URLs found", data: url})
-})
+app.post("/createurl", isUserAuthenticated, validateUrl, addUrl)
 
-app.post("/createurl", validateUrl, async (req, res)=>{
-    console.log(req.body)
+app.get("/:url", visitUrl)
 
-    let urlBody = {
-        full_url: req.body.full_url,
-        short_url: req.body.custom_url ? req.body.custom_url : nanoid(6)
-    }
-
-    let url = new Urls(urlBody)
-    url = await url.save()
-
-    return res.status(201).json({message: "Url created successfully", url})
-})
 
 
 app.listen(4000, console.log("server is listening on port 4000"))
