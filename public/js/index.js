@@ -5,10 +5,6 @@ let passField = document.getElementById('password')
 let error = document.getElementById('error-msg')
 let success = document.getElementById('success-msg')
 
-if(localStorage.getItem('authToken')){
-    window.location.replace('/dashboard.html')
-}
-
 function main(){
     loginBtn.addEventListener('click', ()=>{
         login()

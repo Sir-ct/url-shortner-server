@@ -2,7 +2,6 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    overflow-x: scroll;
 }
 .body-wrapper{
     width: 100vw;
@@ -123,6 +122,9 @@ main{
 @media(max-width: 770px){
     .url-form{
         width: 80%;
+    }
+    .display-url-info{
+        min-width: 600px;
     }
 }
 

@@ -1,7 +1,3 @@
-if(!localStorage.getItem('authToken')){
-    window.location.replace('/')
-}
-
 function main(){
     let bodyContainer = document.getElementById('display-body-container')
     let btn = document.getElementById('submit-btn')
